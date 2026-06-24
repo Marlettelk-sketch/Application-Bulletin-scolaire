@@ -1,0 +1,99 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion des UE et Matières</title>
+    <link rel="stylesheet" href="css/ue-matieres.css">
+</head>
+<body>
+
+<div class="container">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <h2>📘 Bulletins Scolaires</h2>
+                <ul>
+            <li><a href="tableau-de-bord.html">🏠 Tableau de bord</a></li>
+            <li class="active"><a href="ue-matieres.html">📚 UE & Matières</a></li>
+            <li><a href="devoirs-controle.html">📝 Devoirs & Contrôles</a></li>
+            <li><a href="notifications.html">🔔 Notifications</a></li>
+            <li><a href="messagerie.html">💬 Messagerie</a></li>
+            <li><a href="espace-personnel.html">⭐ Espace personnel</a></li>
+            <li><a href="bulletins.html">📄 Mes bulletins</a></li>
+            <li><a href="emploi-du-temps.html">🗓️ Emploi du temps</a></li>
+            <li><a href="profil.html">👤 Mon profil</a></li>
+        </ul>
+        <a href="connexion.html" class="logout">🚪 Déconnexion</a>
+    </aside>
+
+    <!-- CONTENU PRINCIPAL -->
+    <main class="content">
+
+        <!-- TOPBAR STATS -->
+        <header class="topbar">
+            <h1>Gestion des UE et Matières</h1>
+            <section class="stats">
+                <div class="card">
+                    <h3 id="nbUE">0</h3>
+                    <p>UE enregistrées</p>
+                </div>
+                <div class="card">
+                    <h3 id="nbMatieres">0</h3>
+                    <p>Matières enregistrées</p>
+                </div>
+            </section>
+        </header>
+
+        <!-- FORMULAIRE AJOUT UE -->
+        <section class="form-container">
+            <h2>➕ Ajouter une UE</h2>
+            <form id="ueForm">
+                <input type="text" id="codeUE" placeholder="Code UE (ex: UE1)" required>
+                <input type="text" id="nomUE" placeholder="Nom de l'UE" required>
+                <select id="niveauUE">
+                    <option value="">-- Niveau --</option>
+                    <option value="L1">L1</option>
+                    <option value="L2">L2</option>
+                    <option value="L3">L3</option>
+                    <option value="M1">M1</option>
+                    <option value="M2">M2</option>
+                </select>
+                <select id="semestreUE">
+                    <option value="">-- Semestre --</option>
+                    <option value="S1">Semestre 1</option>
+                    <option value="S2">Semestre 2</option>
+                </select>
+                <button type="submit">Ajouter UE</button>
+            </form>
+        </section>
+
+        <!-- FORMULAIRE AJOUT MATIERE -->
+        <section class="matiere-form-container">
+            <h2>📖 Ajouter une Matière</h2>
+            <p id="ueSelectionneeLabel" class="ue-label">Aucune UE sélectionnée</p>
+            <form id="matiereForm">
+                <input type="text" id="nomMatiere" placeholder="Nom de la matière" required>
+                <input type="number" id="coefficient" placeholder="Coefficient" min="1" required>
+                <input type="number" id="credits" placeholder="Crédits" min="1" required>
+                <input type="text" id="professeur" placeholder="Nom du professeur" required>
+                <button type="submit">Ajouter Matière</button>
+            </form>
+        </section>
+
+        <!-- LISTE DES UE -->
+        <section class="ue-list">
+            <h2>📋 Liste des UE</h2>
+            <div id="ueContainer"></div>
+        </section>
+
+    </main>
+</div>
+
+<!-- TOAST NOTIFICATION -->
+<div class="toast" id="toast"></div>
+
+<script src="js/ue-matieres.js"></script>
+</body>
+</html>

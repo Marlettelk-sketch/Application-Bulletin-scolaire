@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mon profil</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-page="profil">
+
+<header class="topbar">
+<div class="topbar-left">
+<button class="menu-toggle" aria-label="Ouvrir le menu">☰</button>
+<h1>Application de bulletins scolaire</h1>
+</div>
+<a href="profil.html" class="topbar-user">
+<span class="avatar" data-user-initials>EK</span>
+<span data-user-fullname>Nom étudiant</span>
+</a>
+</header>
+
+<div class="layout">
+<aside class="sidebar">
+<nav>
+<a href="tableau-de-bord.html" data-nav="dashboard"><span class="ic">🏠</span> Tableau de bord</a>
+<a href="ue-matieres.html"><span class="ic">📚</span> UE & Matières</a>
+<a href="devoirs-controle.html"><span class="ic">📝</span> Devoirs & Contrôles</a>
+<a href="notifications.html"><span class="ic">🔔</span> Notifications</a>
+<a href="messagerie.html"><span class="ic">💬</span> Messagerie</a>
+<a href="espace-personnel.html"><span class="ic">⭐</span> Espace personnel</a>
+<a href="bulletins.html" data-nav="bulletins"><span class="ic">📄</span> Mes bulletins</a>
+<a href="emploi-du-temps.html" data-nav="emploi"><span class="ic">🗓️</span> Emploi du temps</a>
+<a href="profil.html" data-nav="profil"><span class="ic">👤</span> Mon profil</a>
+</nav>
+<div class="sidebar-bottom">
+<a href="connexion.html"><span class="ic">🔌</span> Se déconnecter</a>
+</div>
+</aside>
+
+<main class="content">
+<div class="page-greeting">
+<h2>Mon profil</h2>
+<p>Gérez vos informations personnelles et votre sécurité</p>
+</div>
+
+<div class="profile-grid section-gap">
+<div class="card profile-card">
+<div class="profile-avatar" data-user-initials>EK</div>
+<div class="p-name" data-user-fullname>Nom étudiant</div>
+<span class="p-role">Étudiant</span>
+<div class="p-filiere" data-user-filiere>Genie Electrique - L2 - Option SIL</div>
+</div>
+
+<div style="display:flex; flex-direction:column; gap:20px;">
+<form class="card" id="profileForm">
+<h3>Informations personnelles</h3>
+<div class="form-grid">
+<div class="field">
+<label for="pNom">Nom</label>
+<input type="text" id="pNom" value="KOFFI">
+</div>
+<div class="field">
+<label for="pPrenom">Prénom</label>
+<input type="text" id="pPrenom" value="Estelle">
+</div>
+<div class="field full">
+<label for="pEmail">Adresse email</label>
+<input type="email" id="pEmail" value="estelle.koffi@etu.uatm-gasa.tg" readonly>
+<span class="hint">L'email est géré par l'administration et ne peut pas être modifié ici.</span>
+</div>
+<div class="field">
+<label for="pTelephone">Téléphone</label>
+<input type="tel" id="pTelephone" value="+228 90 12 34 56">
+</div>
+<div class="field">
+<label for="pFiliere">Filière / Niveau</label>
+<input type="text" id="pFiliere" value="Genie Electrique - L2 - Option SIL" readonly>
+</div>
+</div>
+<button type="submit" class="btn-primary">Enregistrer les modifications</button>
+</form>
+
+<form class="card" id="passwordForm">
+<h3>Changer le mot de passe</h3>
+<div class="field field-icon">
+<label for="currentPassword">Mot de passe actuel</label>
+<input type="password" id="currentPassword" placeholder="•••••••••••" required>
+<button type="button" class="toggle-eye" aria-label="Afficher le mot de passe">👁</button>
+</div>
+<div class="form-grid">
+<div class="field field-icon">
+<label for="newPassword">Nouveau mot de passe</label>
+<input type="password" id="newPassword" placeholder="•••••••••••" required>
+<button type="button" class="toggle-eye" aria-label="Afficher le mot de passe">👁</button>
+</div>
+<div class="field field-icon">
+<label for="confirmNewPassword">Confirmer le nouveau mot de passe</label>
+<input type="password" id="confirmNewPassword" placeholder="•••••••••••" required>
+<button type="button" class="toggle-eye" aria-label="Afficher le mot de passe">👁</button>
+</div>
+</div>
+<p class="error-text" id="pwdError">Les mots de passe ne correspondent pas.</p>
+<button type="submit" class="btn-secondary">Mettre à jour le mot de passe</button>
+</form>
+</div>
+</div>
+</main>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
+

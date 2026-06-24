@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Devoirs & Contrôles</title>
+    <link rel="stylesheet" href="css/devoirs-controle.css">
+</head>
+<body>
+
+<div class="container">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <h2>📘 Bulletins Scolaires</h2>
+                <ul>
+            <li><a href="tableau-de-bord.html">🏠 Tableau de bord</a></li>
+            <li><a href="ue-matieres.html">📚 UE & Matières</a></li>
+            <li class="active"><a href="devoirs-controle.html">📝 Devoirs & Contrôles</a></li>
+            <li><a href="notifications.html">🔔 Notifications</a></li>
+            <li><a href="messagerie.html">💬 Messagerie</a></li>
+            <li><a href="espace-personnel.html">⭐ Espace personnel</a></li>
+            <li><a href="bulletins.html">📄 Mes bulletins</a></li>
+            <li><a href="emploi-du-temps.html">🗓️ Emploi du temps</a></li>
+            <li><a href="profil.html">👤 Mon profil</a></li>
+        </ul>
+        <a href="connexion.html" class="logout">🚪 Déconnexion</a>
+    </aside>
+
+    <!-- CONTENU -->
+    <main class="content">
+
+        <!-- TOPBAR -->
+        <header class="topbar">
+            <h1>📝 Devoirs & Contrôles</h1>
+            <section class="stats">
+                <div class="card">
+                    <h3 id="nbDevoirs">0</h3>
+                    <p>Devoirs à venir</p>
+                </div>
+                <div class="card">
+                    <h3 id="nbControles">0</h3>
+                    <p>Contrôles à venir</p>
+                </div>
+                <div class="card">
+                    <h3 id="nbAujourdhui">0</h3>
+                    <p>Aujourd'hui</p>
+                </div>
+            </section>
+        </header>
+
+        <!-- ONGLETS -->
+        <div class="tabs">
+            <button class="tab active" onclick="afficherOnglet('devoirs')">📄 Devoirs</button>
+            <button class="tab" onclick="afficherOnglet('controles')">📋 Contrôles continus</button>
+        </div>
+
+        <!-- SECTION DEVOIRS -->
+        <section id="section-devoirs">
+
+            <div class="section-header">
+                <h2>📄 Liste des Devoirs</h2>
+                <button class="btn-ajouter" onclick="ouvrirModal('devoir')">+ Ajouter un devoir</button>
+            </div>
+
+            <div id="devoirsContainer">
+                <p class="vide">Aucun devoir enregistré pour l'instant.</p>
+            </div>
+
+        </section>
+
+        <!-- SECTION CONTRÔLES -->
+        <section id="section-controles" style="display:none;">
+
+            <div class="section-header">
+                <h2>📋 Liste des Contrôles continus</h2>
+                <button class="btn-ajouter" onclick="ouvrirModal('controle')">+ Ajouter un contrôle</button>
+            </div>
+
+            <div id="controlesContainer">
+                <p class="vide">Aucun contrôle enregistré pour l'instant.</p>
+            </div>
+
+        </section>
+
+    </main>
+</div>
+
+<!-- MODAL AJOUT -->
+<div class="modal-overlay" id="modal">
+    <div class="modal">
+        <h2 id="modalTitre">Ajouter</h2>
+        <input type="hidden" id="modalType">
+
+        <div class="form-group">
+            <label>Matière</label>
+            <input type="text" id="modalMatiere" placeholder="Ex: Algorithmique">
+        </div>
+        <div class="form-group">
+            <label>Date</label>
+            <input type="date" id="modalDate">
+        </div>
+        <div class="form-group">
+            <label>Heure</label>
+            <input type="time" id="modalHeure">
+        </div>
+        <div class="form-group">
+            <label>Salle</label>
+            <input type="text" id="modalSalle" placeholder="Ex: Salle A12">
+        </div>
+        <div class="form-group">
+            <label>Semestre</label>
+            <select id="modalSemestre">
+                <option value="S1">Semestre 1</option>
+                <option value="S2">Semestre 2</option>
+            </select>
+        </div>
+
+        <div class="modal-actions">
+            <button class="btn-annuler" onclick="fermerModal()">Annuler</button>
+            <button class="btn-sauvegarder" onclick="sauvegarder()">Sauvegarder</button>
+        </div>
+    </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script src="js/devoirs-controle.js"></script>
+</body>
+</html>

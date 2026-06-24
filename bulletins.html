@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mes bulletins</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-page="bulletins">
+
+<header class="topbar">
+<div class="topbar-left">
+<button class="menu-toggle" aria-label="Ouvrir le menu">☰</button>
+<h1>Application de bulletins scolaire</h1>
+</div>
+<a href="profil.html" class="topbar-user">
+<span class="avatar" data-user-initials>EK</span>
+<span data-user-fullname>Nom étudiant</span>
+</a>
+</header>
+
+<div class="layout">
+<aside class="sidebar">
+<nav>
+<a href="tableau-de-bord.html" data-nav="dashboard"><span class="ic">🏠</span> Tableau de bord</a>
+<a href="ue-matieres.html"><span class="ic">📚</span> UE & Matières</a>
+<a href="devoirs-controle.html"><span class="ic">📝</span> Devoirs & Contrôles</a>
+<a href="notifications.html"><span class="ic">🔔</span> Notifications</a>
+<a href="messagerie.html"><span class="ic">💬</span> Messagerie</a>
+<a href="espace-personnel.html"><span class="ic">⭐</span> Espace personnel</a>
+<a href="bulletins.html" data-nav="bulletins"><span class="ic">📄</span> Mes bulletins</a>
+<a href="emploi-du-temps.html" data-nav="emploi"><span class="ic">🗓️</span> Emploi du temps</a>
+<a href="profil.html" data-nav="profil"><span class="ic">👤</span> Mon profil</a>
+</nav>
+<div class="sidebar-bottom">
+<a href="connexion.html"><span class="ic">🔌</span> Se déconnecter</a>
+</div>
+</aside>
+
+<main class="content">
+<div class="page-greeting">
+<h2>Bonjour, <span data-user-firstname>Prenom</span> !</h2>
+<p>Sélectionnez un semestre pour voir vos notes</p>
+</div>
+
+<div class="semester-picker">
+<span>Choisir le semestre :</span>
+<button class="seg-btn" data-sem="s1">Semestre 1</button>
+<button class="seg-btn" data-sem="s2">Semestre 2</button>
+</div>
+
+<div class="stats-row">
+<div class="stat-card selected">
+<div class="label">Moyenne générale</div>
+<div class="value blue">14.5</div>
+</div>
+<div class="stat-card">
+<div class="label">Semestre actuel</div>
+<div class="value green">S2</div>
+</div>
+<div class="stat-card">
+<div class="label">Bulletins disponibles</div>
+<div class="value orange">3</div>
+</div>
+<div class="stat-card">
+<div class="label">Filière / Niveau</div>
+<div class="value red small">Genie Electrique<br>L2 - Option SIL</div>
+</div>
+</div>
+
+<div class="two-col">
+<div class="card protected-zone">
+<h3 id="notesTitle">Notes récentes — Semestre 2</h3>
+<p style="font-size:.78rem;color:var(--text-gray);margin-top:-8px;margin-bottom:14px;">🔒 Document protégé — capture, copie et impression désactivées</p>
+<table class="notes">
+<thead>
+<tr>
+<th>Matière</th>
+<th>Note</th>
+<th>Coefficient</th>
+<th>Observation</th>
+</tr>
+</thead>
+<tbody id="notesTableBody"></tbody>
+</table>
+<div class="protected-zone-print-msg">Ce document ne peut pas être imprimé directement depuis cette page.</div>
+<div style="margin-top:20px;">
+<button class="btn-primary" id="btnTelechargerBulletin">🔒 Télécharger le bulletin</button>
+</div>
+</div>
+
+<div class="card">
+<h3>🔔 Notifications</h3>
+<div class="notif-item">
+<div class="notif-title">Nouveau bulletin disponible</div>
+<div class="notif-body">Bulletin S1 2025-2026</div>
+<span class="notif-time">Il y a 2 heures</span>
+</div>
+</div>
+</div>
+</main>
+</div>
+
+<!-- ===================== MODAL : Téléchargement sécurisé ===================== -->
+<div class="modal-overlay hidden" id="secureModalOverlay">
+<div class="modal-card">
+<button class="modal-close" id="secureModalClose" aria-label="Fermer">✕</button>
+
+<!-- 5 étapes : paiement → fiche → carte → face → succès -->
+<div class="modal-steps">
+<span class="step-dot" data-step="paiement"></span>
+<span class="step-dot" data-step="fiche"></span>
+<span class="step-dot" data-step="carte"></span>
+<span class="step-dot" data-step="face"></span>
+<span class="step-dot" data-step="succes"></span>
+</div>
+
+<!-- Étape 1 : vérification paiement automatique -->
+<div class="secure-step" id="secureStep-paiement">
+<div class="spinner"></div>
+<h3>Vérification du statut de paiement</h3>
+<p class="step-desc">Merci de patienter, nous vérifions votre situation financière…</p>
+</div>
+
+<!-- Variante : paiement incomplet -->
+<div class="secure-step hidden" id="secureStep-bloque">
+<div class="blocked-box">
+<div class="lock-icon">🔒</div>
+<h3>Téléchargement bloqué</h3>
+<p class="step-desc">Votre scolarité n'est pas réglée intégralement.</p>
+<div class="solde">Solde restant : <span id="soldeRestant">75 000 FCFA</span></div>
+<p class="step-desc">Merci de régulariser votre situation auprès du service de scolarité.</p>
+<div class="modal-actions">
+<button class="btn-secondary" id="btnFermerBloque">Fermer</button>
+</div>
+</div>
+</div>
+
+<!-- Étape 2 : fiche de paiement -->
+<div class="secure-step hidden" id="secureStep-fiche">
+<h3>Fiche de paiement</h3>
+<p class="step-desc">Importez la fiche de paiement fournie par l'école. L'IA va vérifier que votre nom correspond à votre inscription.</p>
+<div class="doc-upload-zone" id="ficheUploadZone">
+<div class="upload-icon">📄</div>
+<p>Cliquez pour importer la fiche</p>
+<input type="file" id="ficheFileInput" accept="image/*,application/pdf" style="position:absolute;inset:0;opacity:0;cursor:pointer;">
+</div>
+<img id="fichePreview" class="doc-preview hidden" alt="Fiche de paiement">
+<div class="ai-result hidden" id="ficheResult"></div>
+<div class="modal-actions" id="ficheActions" style="display:none;">
+<button class="btn-secondary" id="btnRefaireFiche">Recommencer</button>
+</div>
+</div>
+
+<!-- Étape 3 : carte d'étudiant -->
+<div class="secure-step hidden" id="secureStep-carte">
+<h3>Carte d'étudiant</h3>
+<p class="step-desc">Prenez en photo ou importez votre carte d'étudiant. L'IA vérifiera qu'il s'agit bien d'une carte valide.</p>
+<p class="cam-error hidden" id="carteCamError">Caméra inaccessible. Utilisez l'import ci-dessous.</p>
+<div class="cam-frame">
+<video id="videoCarte" autoplay playsinline muted></video>
+<img id="cartePreview" class="capture-preview hidden" alt="Carte capturée">
+</div>
+<canvas id="canvasCarte" class="hidden"></canvas>
+<div class="ai-result hidden" id="carteResult"></div>
+<div class="modal-actions" id="carteActions">
+<button class="btn-primary" id="btnCaptureCarte">📷 Prendre la photo</button>
+<button class="btn-secondary hidden" id="btnRefaireCarte">Recommencer</button>
+</div>
+<label class="upload-fallback">Pas de caméra ? Importer une photo
+<input type="file" id="carteFileInput" accept="image/*" capture="environment" style="display:none;">
+</label>
+</div>
+
+<!-- Étape 4 : reconnaissance faciale -->
+<div class="secure-step hidden" id="secureStep-face">
+<h3>Reconnaissance faciale</h3>
+<p class="step-desc">Prenez un selfie. L'IA va comparer votre visage avec la photo sur votre carte d'étudiant.</p>
+<p class="cam-error hidden" id="faceCamError">Caméra inaccessible. Importez une photo.</p>
+<div class="cam-frame">
+<video id="videoFace" autoplay playsinline muted></video>
+<img id="facePreview" class="capture-preview hidden" alt="Selfie">
+<div class="face-guide" id="faceGuide"></div>
+</div>
+<canvas id="canvasFace" class="hidden"></canvas>
+<div class="scan-progress-track"><div class="scan-progress-fill" id="scanProgress"></div></div>
+<p class="scan-status" id="scanStatus">Prenez un selfie pour lancer l'analyse.</p>
+<div class="ai-result hidden" id="faceResult"></div>
+<div class="modal-actions" id="faceActions">
+<button class="btn-primary" id="btnCaptureFace">📷 Prendre le selfie</button>
+<button class="btn-secondary hidden" id="btnRefaireFace">Recommencer</button>
+</div>
+<label class="upload-fallback">Pas de caméra ? Importer une photo
+<input type="file" id="faceFileInput" accept="image/*" capture="user" style="display:none;">
+</label>
+</div>
+
+<!-- Étape 5 : succès -->
+<div class="secure-step hidden" id="secureStep-succes">
+<div class="succes-box">
+<div class="check-icon">✅</div>
+<h3>Identité confirmée</h3>
+<p class="step-desc">Toutes les vérifications ont réussi. Téléchargement en cours…</p>
+</div>
+</div>
+
+</div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
+

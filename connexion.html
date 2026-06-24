@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Connexion</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="topbar topbar-auth">
+<h1>Application de bulletins scolaires</h1>
+</header>
+
+<main class="auth-page">
+<div class="auth-card">
+<h2>CONNEXION</h2>
+<p class="subtitle">Bienvenue dans notre espace</p>
+
+<form id="loginForm" novalidate>
+<div class="field">
+<label for="loginEmail">Adresse email</label>
+<input type="email" id="loginEmail" placeholder="exemple@gmail.com" required>
+</div>
+
+<div class="field">
+<label for="loginPassword">Mot de passe</label>
+<input type="password" id="loginPassword" placeholder="•••••••••••" required>
+</div>
+
+<button type="submit" class="btn-primary full">Se connecter</button>
+</form>
+
+<a href="#" class="link-center">Mot de passe oublié ?</a>
+<p class="small-center">Vous n'avez pas de compte ? <a href="inscription.html">S'inscrire</a></p>
+</div>
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>
+

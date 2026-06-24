@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scolaris</title>
+<style>
+*{ margin:0; padding:0; box-sizing:border-box; }
+html, body{ height:100%; overflow:hidden; background:#09111f; }
+body{ font-family:"Inter","Segoe UI",system-ui,Arial,sans-serif; }
+
+/* ---- Fond image de l'école ---- */
+.splash-bg{
+position:fixed; inset:0;
+/* Remplacez school.jpg par l'image réelle de votre école */
+background-image: url('school.jpg');
+background-size:cover; background-position:center;
+filter:brightness(.45) blur(3px);
+transform:scale(1.06); /* masque les bords du flou */
+transition:opacity .6s ease;
+}
+
+/* ---- Dégradé sombre par-dessus ---- */
+.splash-overlay{
+position:fixed; inset:0;
+background: linear-gradient(
+160deg,
+rgba(9,17,31,.55) 0%,
+rgba(9,17,31,.80) 60%,
+rgba(9,17,31,.95) 100%
+);
+}
+
+/* ---- Contenu centré ---- */
+.splash-content{
+position:relative; z-index:10;
+height:100vh;
+display:flex; flex-direction:column;
+align-items:center; justify-content:center;
+text-align:center; padding:0 24px;
+}
+
+/* Icône / logo */
+.splash-logo{
+width:86px; height:86px; border-radius:24px;
+background:linear-gradient(135deg,#2563eb,#1d4ed8);
+display:flex; align-items:center; justify-content:center;
+font-size:2.2rem; margin-bottom:30px;
+box-shadow:0 12px 40px rgba(37,99,235,.45);
+opacity:0;
+animation: popIn .8s cubic-bezier(.34,1.56,.64,1) .1s forwards;
+}
+
+/* Nom de l'app */
+.splash-title{
+font-size:clamp(2.8rem,8vw,5rem);
+font-weight:900; color:#fff;
+letter-spacing:.14em; text-transform:uppercase;
+opacity:0;
+animation: fadeUp .9s ease .4s forwards;
+}
+
+/* Sous-titre */
+.splash-subtitle{
+font-size:.95rem; color:rgba(255,255,255,.6);
+font-weight:500; margin-top:10px;
+letter-spacing:.06em;
+opacity:0;
+animation: fadeUp .9s ease .7s forwards;
+}
+
+/* Barre décorative */
+.splash-divider{
+width:52px; height:3px; border-radius:2px;
+background:linear-gradient(90deg,#2563eb,#60a5fa);
+margin:26px auto;
+opacity:0;
+animation: fadeUp .9s ease .9s forwards;
+}
+
+/* Bloc compteur + barre */
+.splash-footer{
+margin-top:48px;
+opacity:0;
+animation: fadeUp .9s ease 1.1s forwards;
+}
+
+.splash-countdown{
+font-size:.78rem; color:rgba(255,255,255,.4);
+letter-spacing:.04em; margin-bottom:10px;
+}
+.splash-countdown span{ color:rgba(255,255,255,.7); font-weight:700; }
+
+.splash-track{
+width:220px; height:4px;
+background:rgba(255,255,255,.12); border-radius:999px; overflow:hidden;
+}
+.splash-bar{
+height:100%; width:0%;
+background:linear-gradient(90deg,#2563eb,#60a5fa);
+border-radius:999px;
+}
+
+/* Bouton passer */
+.splash-skip{
+margin-top:26px;
+background:rgba(255,255,255,.08);
+border:1px solid rgba(255,255,255,.18);
+color:rgba(255,255,255,.65);
+font-size:.85rem; font-weight:600;
+padding:10px 28px; border-radius:999px;
+cursor:pointer; font-family:inherit;
+backdrop-filter:blur(6px);
+transition:background .15s, color .15s, border-color .15s;
+}
+.splash-skip:hover{ background:rgba(255,255,255,.16); color:#fff; border-color:rgba(255,255,255,.35); }
+
+/* ---- Animations ---- */
+@keyframes popIn{
+from{ opacity:0; transform:scale(.5); }
+to{ opacity:1; transform:scale(1); }
+}
+@keyframes fadeUp{
+from{ opacity:0; transform:translateY(22px); }
+to{ opacity:1; transform:translateY(0); }
+}
+@keyframes fadePageOut{
+from{ opacity:1; }
+to{ opacity:0; }
+}
+.page-out{ animation: fadePageOut .55s ease forwards; }
+</style>
+</head>
+<body>
+
+<div class="splash-bg" id="bg"></div>
+<div class="splash-overlay" id="ov"></div>
+
+<div class="splash-content" id="sc">
+<div class="splash-logo">🎓</div>
+<h1 class="splash-title">Scolaris</h1>
+<p class="splash-subtitle">Système de gestion des bulletins scolaires</p>
+<div class="splash-divider"></div>
+
+<div class="splash-footer">
+<p class="splash-countdown">Redirection dans <span id="count">10</span> s</p>
+<div class="splash-track"><div class="splash-bar" id="bar"></div></div>
+<button class="splash-skip" onclick="aller()">Accéder maintenant →</button>
+</div>
+</div>
+
+<script>
+const DUREE = 10;
+let restant = DUREE;
+
+// Lance la barre de progression après les animations d'entrée (≈1.3 s)
+setTimeout(() => {
+const bar = document.getElementById("bar");
+bar.style.transition = `width ${DUREE}s linear`;
+bar.style.width = "100%";
+}, 200);
+
+const tick = setInterval(() => {
+restant--;
+document.getElementById("count").textContent = restant;
+if (restant <= 0){ clearInterval(tick); aller(); }
+}, 1000);
+
+function aller(){
+clearInterval(tick);
+["sc","bg","ov"].forEach(id => document.getElementById(id).classList.add("page-out"));
+setTimeout(() => { window.location.href = "connexion.html"; }, 560);
+}
+</script>
+</body>
+</html>
+

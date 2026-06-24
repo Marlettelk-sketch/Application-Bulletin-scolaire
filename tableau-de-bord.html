@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard-Etudiant</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-page="dashboard">
+
+<header class="topbar">
+<div class="topbar-left">
+<button class="menu-toggle" aria-label="Ouvrir le menu">☰</button>
+<h1>Application de bulletins scolaire</h1>
+</div>
+<a href="profil.html" class="topbar-user">
+<span class="avatar" data-user-initials>EK</span>
+<span data-user-fullname>Nom étudiant</span>
+</a>
+</header>
+
+<div class="layout">
+<aside class="sidebar">
+<nav>
+<a href="tableau-de-bord.html" data-nav="dashboard"><span class="ic">🏠</span> Tableau de bord</a>
+<a href="ue-matieres.html"><span class="ic">📚</span> UE & Matières</a>
+<a href="devoirs-controle.html"><span class="ic">📝</span> Devoirs & Contrôles</a>
+<a href="notifications.html"><span class="ic">🔔</span> Notifications</a>
+<a href="messagerie.html"><span class="ic">💬</span> Messagerie</a>
+<a href="espace-personnel.html"><span class="ic">⭐</span> Espace personnel</a>
+<a href="bulletins.html" data-nav="bulletins"><span class="ic">📄</span> Mes bulletins</a>
+<a href="emploi-du-temps.html" data-nav="emploi"><span class="ic">🗓️</span> Emploi du temps</a>
+<a href="profil.html" data-nav="profil"><span class="ic">👤</span> Mon profil</a>
+</nav>
+<div class="sidebar-bottom">
+<a href="connexion.html"><span class="ic">🔌</span> Se déconnecter</a>
+</div>
+</aside>
+
+<main class="content">
+<div class="page-greeting">
+<h2>Bonjour, <span data-user-firstname>Prenom</span> !</h2>
+<p>Sélectionnez un semestre pour voir vos notes</p>
+</div>
+
+<div class="semester-picker">
+<span>Choisir le semestre :</span>
+<button class="seg-btn" data-sem="s1">Semestre 1</button>
+<button class="seg-btn" data-sem="s2">Semestre 2</button>
+</div>
+
+<div class="stats-row stats-row-3">
+<div class="stat-card">
+<div class="label">Moyenne générale</div>
+<div class="value blue">14.5</div>
+</div>
+<div class="stat-card">
+<div class="label">Semestre actuel</div>
+<div class="value green">S2</div>
+</div>
+<div class="stat-card">
+<div class="label">Bulletins disponibles</div>
+<div class="value orange">3</div>
+</div>
+</div>
+
+<div class="filiere-card">
+<div class="label">Filière / Option</div>
+<div class="value" data-user-filiere>Genie Electrique - L2 - Option SIL</div>
+</div>
+
+<div class="btn-center">
+<a href="bulletins.html" class="btn-primary" id="voirBulletinLink" style="text-decoration:none; display:inline-flex; align-items:center; gap:8px;">
+🎯 Voir mon bulletin
+</a>
+</div>
+</main>
+</div>
+
+<script src="script.js"></script>
+<script>
+// Relie le bouton "Voir mon bulletin" au semestre sélectionné
+document.addEventListener("semestreChange", (e) => {
+document.querySelector("#voirBulletinLink").href = "bulletins.html?sem=" + e.detail;
+});
+</script>
+</body>
+</html>
+

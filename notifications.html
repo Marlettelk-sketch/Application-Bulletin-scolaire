@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notifications</title>
+    <link rel="stylesheet" href="css/notifications.css">
+</head>
+<body>
+
+<div class="container">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <h2>📘 Bulletins Scolaires</h2>
+                <ul>
+            <li><a href="tableau-de-bord.html">🏠 Tableau de bord</a></li>
+            <li><a href="ue-matieres.html">📚 UE & Matières</a></li>
+            <li><a href="devoirs-controle.html">📝 Devoirs & Contrôles</a></li>
+            <li class="active"><a href="notifications.html">🔔 Notifications</a></li>
+            <li><a href="messagerie.html">💬 Messagerie</a></li>
+            <li><a href="espace-personnel.html">⭐ Espace personnel</a></li>
+            <li><a href="bulletins.html">📄 Mes bulletins</a></li>
+            <li><a href="emploi-du-temps.html">🗓️ Emploi du temps</a></li>
+            <li><a href="profil.html">👤 Mon profil</a></li>
+        </ul>
+        <a href="connexion.html" class="logout">🚪 Déconnexion</a>
+    </aside>
+
+    <!-- CONTENU -->
+    <main class="content">
+
+        <!-- TOPBAR -->
+        <header class="topbar">
+            <h1>🔔 Notifications</h1>
+            <section class="stats">
+                <div class="card">
+                    <h3 id="nbTotal">0</h3>
+                    <p>Total</p>
+                </div>
+                <div class="card">
+                    <h3 id="nbNonLues">0</h3>
+                    <p>Non lues</p>
+                </div>
+                <div class="card">
+                    <h3 id="nbLues">0</h3>
+                    <p>Lues</p>
+                </div>
+            </section>
+        </header>
+
+        <!-- FILTRES ET ACTIONS -->
+        <div class="toolbar">
+            <div class="filtres">
+                <button class="filtre active" onclick="filtrer('toutes')">Toutes</button>
+                <button class="filtre" onclick="filtrer('non-lues')">🔴 Non lues</button>
+                <button class="filtre" onclick="filtrer('notes')">📊 Notes</button>
+                <button class="filtre" onclick="filtrer('bulletins')">📋 Bulletins</button>
+                <button class="filtre" onclick="filtrer('emploi')">📅 Emploi du temps</button>
+                <button class="filtre" onclick="filtrer('admin')">📢 Annonces</button>
+            </div>
+            <button class="btn-tout-lire" onclick="toutMarquerLu()">✅ Tout marquer comme lu</button>
+        </div>
+
+        <!-- LISTE NOTIFICATIONS -->
+        <section class="notif-liste" id="notifContainer">
+        </section>
+
+    </main>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script src="js/notifications.js"></script>
+</body>
+</html>

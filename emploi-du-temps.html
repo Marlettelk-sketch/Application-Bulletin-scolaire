@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Emploi du temps</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-page="emploi">
+
+<header class="topbar">
+<div class="topbar-left">
+<button class="menu-toggle" aria-label="Ouvrir le menu">☰</button>
+<h1>Application de bulletins scolaire</h1>
+</div>
+<a href="profil.html" class="topbar-user">
+<span class="avatar" data-user-initials>EK</span>
+<span data-user-fullname>Nom étudiant</span>
+</a>
+</header>
+
+<div class="layout">
+<aside class="sidebar">
+<nav>
+<a href="tableau-de-bord.html" data-nav="dashboard"><span class="ic">🏠</span> Tableau de bord</a>
+<a href="ue-matieres.html"><span class="ic">📚</span> UE & Matières</a>
+<a href="devoirs-controle.html"><span class="ic">📝</span> Devoirs & Contrôles</a>
+<a href="notifications.html"><span class="ic">🔔</span> Notifications</a>
+<a href="messagerie.html"><span class="ic">💬</span> Messagerie</a>
+<a href="espace-personnel.html"><span class="ic">⭐</span> Espace personnel</a>
+<a href="bulletins.html" data-nav="bulletins"><span class="ic">📄</span> Mes bulletins</a>
+<a href="emploi-du-temps.html" data-nav="emploi"><span class="ic">🗓️</span> Emploi du temps</a>
+<a href="profil.html" data-nav="profil"><span class="ic">👤</span> Mon profil</a>
+</nav>
+<div class="sidebar-bottom">
+<a href="connexion.html"><span class="ic">🔌</span> Se déconnecter</a>
+</div>
+</aside>
+
+<main class="content">
+<div class="page-greeting">
+<h2>Mon emploi du temps</h2>
+<p><span data-user-filiere>Genie Electrique - L2 - Option SIL</span> · Semaine type</p>
+</div>
+
+<div class="semester-picker" data-context="emploi">
+<span>Choisir le semestre :</span>
+<button class="seg-btn" data-sem="s1">Semestre 1</button>
+<button class="seg-btn active" data-sem="s2">Semestre 2</button>
+</div>
+
+<div class="legend">
+<div class="legend-item"><span class="legend-dot cours"></span> Cours</div>
+<div class="legend-item"><span class="legend-dot td"></span> Travaux dirigés (TD)</div>
+<div class="legend-item"><span class="legend-dot tp"></span> Travaux pratiques (TP)</div>
+</div>
+
+<div class="card">
+<div class="timetable-wrap">
+<table class="timetable">
+<thead>
+<tr>
+<th></th>
+<th>Lundi</th>
+<th>Mardi</th>
+<th>Mercredi</th>
+<th>Jeudi</th>
+<th>Vendredi</th>
+<th>Samedi</th>
+</tr>
+</thead>
+<tbody id="timetableBody"></tbody>
+</table>
+</div>
+</div>
+</main>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
+

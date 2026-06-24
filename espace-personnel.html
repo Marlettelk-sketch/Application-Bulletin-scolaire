@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Espace Personnel</title>
+    <link rel="stylesheet" href="css/espace-personnel.css">
+</head>
+<body>
+
+<div class="container">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <h2>📘 Bulletins Scolaires</h2>
+                <ul>
+            <li><a href="tableau-de-bord.html">🏠 Tableau de bord</a></li>
+            <li><a href="ue-matieres.html">📚 UE & Matières</a></li>
+            <li><a href="devoirs-controle.html">📝 Devoirs & Contrôles</a></li>
+            <li><a href="notifications.html">🔔 Notifications</a></li>
+            <li><a href="messagerie.html">💬 Messagerie</a></li>
+            <li class="active"><a href="espace-personnel.html">⭐ Espace personnel</a></li>
+            <li><a href="bulletins.html">📄 Mes bulletins</a></li>
+            <li><a href="emploi-du-temps.html">🗓️ Emploi du temps</a></li>
+            <li><a href="profil.html">👤 Mon profil</a></li>
+        </ul>
+        <a href="connexion.html" class="logout">🚪 Déconnexion</a>
+    </aside>
+
+    <!-- CONTENU -->
+    <main class="content">
+
+        <!-- TOPBAR AVEC RECHERCHE -->
+        <header class="topbar">
+            <h1>⭐ Mon Espace Personnel</h1>
+            <p class="sous-titre">Retrouvez ici un résumé de toutes vos informations académiques</p>
+
+            <div class="recherche-globale">
+                <input type="text" id="rechercheInput" placeholder="🔍 Rechercher une matière, un devoir, un examen, un document..." oninput="rechercherGlobal(this.value)">
+            </div>
+        </header>
+
+        <!-- RÉSULTATS DE RECHERCHE -->
+        <section id="resultatsRecherche" style="display:none;">
+            <h2>Résultats de recherche</h2>
+            <div id="resultatsContainer"></div>
+        </section>
+
+        <!-- CONTENU NORMAL (masqué pendant la recherche) -->
+        <div id="contenuNormal">
+
+            <!-- CARTES RÉSUMÉ -->
+            <section class="resume-cards">
+                <div class="resume-card">
+                    <div class="resume-icone">📚</div>
+                    <div>
+                        <h3 id="resumeUE">3</h3>
+                        <p>UE enregistrées</p>
+                    </div>
+                </div>
+                <div class="resume-card">
+                    <div class="resume-icone">📝</div>
+                    <div>
+                        <h3 id="resumeDevoirs">2</h3>
+                        <p>Devoirs à venir</p>
+                    </div>
+                </div>
+                <div class="resume-card">
+                    <div class="resume-icone">📋</div>
+                    <div>
+                        <h3 id="resumeExamens">1</h3>
+                        <p>Examens à venir</p>
+                    </div>
+                </div>
+                <div class="resume-card">
+                    <div class="resume-icone">🔔</div>
+                    <div>
+                        <h3 id="resumeNotifs">3</h3>
+                        <p>Notifications non lues</p>
+                    </div>
+                </div>
+            </section>
+
+            <div class="grid-deux">
+
+                <!-- PROCHAINS ÉVÉNEMENTS -->
+                <section class="bloc">
+                    <h2>📅 Prochains événements</h2>
+                    <div id="prochainsEvenements"></div>
+                </section>
+
+                <!-- ACTIVITÉ RÉCENTE -->
+                <section class="bloc">
+                    <h2>🕐 Activité récente</h2>
+                    <div id="activiteRecente"></div>
+                </section>
+
+            </div>
+
+            <!-- DOCUMENTS ACADÉMIQUES -->
+            <section class="bloc">
+                <div class="bloc-header">
+                    <h2>📥 Documents académiques</h2>
+                    <div class="filtres-doc">
+                        <button class="filtre-doc active" onclick="filtrerDoc('tous')">Tous</button>
+                        <button class="filtre-doc" onclick="filtrerDoc('cours')">📘 Cours</button>
+                        <button class="filtre-doc" onclick="filtrerDoc('td')">📝 TD</button>
+                        <button class="filtre-doc" onclick="filtrerDoc('administratif')">📄 Administratif</button>
+                    </div>
+                </div>
+                <div id="documentsContainer" class="documents-grid"></div>
+            </section>
+
+        </div>
+
+    </main>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script src="js/espace-personnel.js"></script>
+</body>
+</html>
